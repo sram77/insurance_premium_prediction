@@ -2,7 +2,6 @@ import streamlit as st
 import pickle
 import pandas as pd
 
-
 # Load the trained model
 with open('random_forest_reg.pkl', 'rb') as file:
     model = pickle.load(file)
@@ -13,7 +12,7 @@ with open('scaler.pkl', 'rb') as file:
 
 # Define a function to preprocess inputs
 def preprocess_input(weight, height, age, num_surgeries, binary_features):
-    bmi = weight / ((height*0.01) ** 2)
+    bmi = weight / ((height * 0.01) ** 2)
     numeric_features = pd.DataFrame({
         'Age': [age],
         'BMI': [bmi],
@@ -26,6 +25,9 @@ def preprocess_input(weight, height, age, num_surgeries, binary_features):
     return input_data
 
 # Streamlit app
+# Add image
+st.image('LL.jpg', width=80)  # Change the path to your image
+
 st.title('Premium Prediction App')
 
 # Collect user inputs
@@ -35,7 +37,7 @@ Height = st.number_input('Height (cm)', min_value=0.0, format='%f')
 NumberOfMajorSurgerieses = st.number_input('Number of Surgeries', min_value=0, format='%d')
 
 st.subheader('Check the box if you have the following')
-binary_features =['Diabetes','BloodPressureProblems','AnyTransplants','AnyChronicDiseases','KnownAllergies','HistoryOfCancerInFamily','NumberOfMajorSurgeries']
+binary_features = ['Diabetes', 'BloodPressureProblems', 'AnyTransplants', 'AnyChronicDiseases', 'KnownAllergies', 'HistoryOfCancerInFamily', 'NumberOfMajorSurgeries']
 for feature in binary_features:
     st.checkbox(feature, key=feature)
 
