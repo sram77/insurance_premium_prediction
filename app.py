@@ -25,6 +25,8 @@ def preprocess_input(weight, height, age, num_surgeries, binary_features):
         input_data[feature] = [st.session_state[feature]]
     return input_data
 
+
+st.image('path_to_your_image.jpg', width=80)
 # Streamlit app
 st.title('Premium Prediction App')
 
